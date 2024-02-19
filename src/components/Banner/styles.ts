@@ -1,5 +1,11 @@
 import { css } from "@linaria/core";
-import { COLORS, FONT_SIZE, FONT_WEIGHT, SPACING } from "src/constants";
+import {
+  BORDERS,
+  COLORS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from "src/constants";
 
 export const bannerInnerStyles = css`
   align-items: center;
@@ -44,4 +50,6 @@ export const buttonBoxStyles = css`
 
 export const imgStyles = css`
   width: 100%;
+
+  border-radius: ${BORDERS[4]};
 `;
