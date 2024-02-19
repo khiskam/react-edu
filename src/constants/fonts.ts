@@ -3,4 +3,11 @@ export const FONT_WEIGHT = {
   medium: 500,
 } as const;
 
-export type FONT_WEIGHT = (typeof FONT_WEIGHT)[keyof typeof FONT_WEIGHT];
+export const FONT_SIZE = {
+  12: "12px",
+  16: "16px",
+  20: "20px",
+  24: "24px",
+  28: "28px",
+  32: "32px",
+};
