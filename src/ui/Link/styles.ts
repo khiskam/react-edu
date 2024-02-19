@@ -1,4 +1,4 @@
-import { COLORS, FONT_SIZE, FONT_WEIGHT } from "src/constants";
+import { COLORS, FONT_SIZE, FONT_WEIGHT } from "src/assets/styles";
 import { css } from "@linaria/core";
 
 export const linkStyles = css`

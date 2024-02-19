@@ -5,7 +5,7 @@ import {
   FONT_SIZE,
   FONT_WEIGHT,
   SPACING,
-} from "src/constants";
+} from "src/assets/styles";
 
 export const bannerInnerStyles = css`
   align-items: center;

@@ -1,5 +1,5 @@
 import { css } from "@linaria/core";
-import { COLORS } from "src/constants";
+import { COLORS } from "src/assets/styles";
 
 export const dividerStyles = css`
   width: 100%;

@@ -1,5 +1,5 @@
 import { css } from "@linaria/core";
-import { SPACING } from "src/constants";
+import { SPACING } from "src/assets/styles";
 
 export const headerStyles = css`
   padding: ${SPACING[24]} 0;

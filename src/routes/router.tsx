@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "../constants";
 import { Layout } from "./Layout";
-import { MainPage } from "../pages";
+import { CatalogPage, MainPage } from "../pages";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +11,11 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.main,
         element: <MainPage />,
+      },
+
+      {
+        path: ROUTES.catalog,
+        element: <CatalogPage />,
       },
     ],
   },

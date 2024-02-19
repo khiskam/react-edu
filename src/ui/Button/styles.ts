@@ -6,7 +6,7 @@ import {
   FONT_WEIGHT,
   SPACING,
   TRANSITION,
-} from "src/constants";
+} from "src/assets/styles";
 
 const outlinedStyles = css`
   color: ${COLORS.green};
