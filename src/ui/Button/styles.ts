@@ -37,6 +37,7 @@ const commonStyles = css`
 
   font-size: ${FONT_SIZE[16]};
   font-weight: ${FONT_WEIGHT.medium};
+  text-decoration: none;
 
   border: none;
   cursor: pointer;

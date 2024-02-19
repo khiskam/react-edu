@@ -7,4 +7,5 @@ export const SPACING = {
   24: "24px",
   28: "28px",
   32: "32px",
+  96: "96px",
 };
