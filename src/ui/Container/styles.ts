@@ -1,4 +1,5 @@
 import { css } from "@linaria/core";
+import { SPACING } from "src/constants";
 
 export const containerStyles = css`
   height: 100%;
@@ -22,6 +23,6 @@ export const containerStyles = css`
   }
 
   @media screen and (max-width: 576px) {
-    padding: var(--spacing-lg);
+    padding: 0 ${SPACING[24]};
   }
 `;
