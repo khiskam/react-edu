@@ -1,3 +1,10 @@
+import { Container, Divider } from "src/ui";
+
 export const MainPage = () => {
-  return <></>;
+  return (
+    <>
+      <Divider />
+      <Container></Container>
+    </>
+  );
 };

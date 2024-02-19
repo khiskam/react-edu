@@ -1,3 +1,5 @@
+import { HTMLAttributes } from "react";
+
 export type ButtonProps = {
   outlined?: boolean;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & HTMLAttributes<HTMLButtonElement>;
