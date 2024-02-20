@@ -3,4 +3,7 @@ export const ROUTES = {
   login: "/login",
   register: "/register",
   catalog: "/catalog",
+  users: "/users",
+  product: "/product",
+  productCreate: "/product/create",
 };
