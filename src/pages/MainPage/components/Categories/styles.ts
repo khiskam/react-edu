@@ -5,15 +5,6 @@ export const categoriesInnerStyles = css`
   padding: ${SPACING[96]} 0;
 `;
 
-export const categoriesBoxStyles = css`
-  display: grid;
-  margin-top: ${SPACING[32]};
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: ${SPACING[12]};
-`;
-
 export const cardStyles = css`
   display: grid;
   gap: ${SPACING[8]};
@@ -29,4 +20,17 @@ export const cardStyles = css`
 
     color: ${COLORS.gray};
   }
+`;
+
+export const categoriesContainer = css`
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 300px auto;
+  gap: 32px;
+`;
+
+export const accordionContainerStyles = css`
+  align-content: start;
+  display: grid;
+  gap: ${SPACING[16]};
 `;
