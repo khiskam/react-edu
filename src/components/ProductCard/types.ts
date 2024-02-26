@@ -1,12 +1,16 @@
 export type CardProps = {
   product: Product;
-  to?: string;
+  openId?: number;
+  onClose?: () => void;
+  onOpen?: (id: number) => void;
+  onPage?: (id: number) => void;
 };
 
-type Product = {
+export type Product = {
   id: number;
   title: string;
   description: string;
   category: string;
   price: number;
+  count: number;
 };

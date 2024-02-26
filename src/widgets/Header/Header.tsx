@@ -1,11 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "src/assets/icons/logo.svg?react";
-import { Container, Link } from "src/ui";
+import { Container, LinkButton } from "src/ui";
 import { ROUTES } from "src/constants";
 import { LINKS } from "./constants";
 import { headerInneerStyles, headerStyles, navStyles } from "./styled";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={headerStyles}>
       <Container className={headerInneerStyles}>
@@ -14,9 +16,9 @@ export const Header = () => {
         </NavLink>
         <nav className={navStyles}>
           {LINKS.map((link) => (
-            <Link to={link.route} key={link.route}>
+            <LinkButton onClick={() => navigate(link.route)} key={link.route}>
               {link.children}
-            </Link>
+            </LinkButton>
           ))}
         </nav>
       </Container>

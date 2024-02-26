@@ -8,6 +8,7 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Семена",
     price: 180,
+    count: 0,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Инструменты",
     price: 340,
+    count: 4,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Инструменты",
     price: 1256,
+    count: 6,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Растения",
     price: 180,
+    count: 0,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Горшки",
     price: 1256,
+    count: 0,
   },
   {
     id: 6,
@@ -48,5 +53,6 @@ export const PRODUCTS = [
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
     category: "Горшки",
     price: 344,
+    count: 1,
   },
 ];

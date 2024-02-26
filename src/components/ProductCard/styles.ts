@@ -1,5 +1,11 @@
 import { css } from "@linaria/core";
-import { COLORS, FONT_SIZE, FONT_WEIGHT, SPACING } from "src/assets/styles";
+import {
+  BORDERS,
+  COLORS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from "src/assets/styles";
 
 export const cardStyles = css`
   display: grid;
@@ -9,8 +15,8 @@ export const cardStyles = css`
 
   justify-items: start;
 
-  border-radius: 4px;
-  gap: 8px;
+  border-radius: ${BORDERS[4]};
+  gap: ${SPACING[8]};
 
   & > :first-child {
     font-weight: ${FONT_WEIGHT.medium};
