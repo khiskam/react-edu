@@ -1,14 +1,8 @@
 import { RouterProvider } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "../shared/styles";
-import { router } from "src/shared/routes";
+import { router } from "../shared/router";
 
-function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
-  );
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
