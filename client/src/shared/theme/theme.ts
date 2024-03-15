@@ -3,6 +3,7 @@ import { ThemeConfig, theme } from "antd";
 export const HEADER_HEIGHT = 64;
 
 export const SPACE = {
+  gap4: 4,
   gap12: 12,
   gap32: 32,
   padding96: 96,
@@ -14,7 +15,7 @@ export const config: ThemeConfig = {
     colorInfo: "#2b6cb0",
     colorSuccess: "#38a169",
     colorWarning: "#d69e2e",
-    colorError: "#c53030",
+    colorError: "#e53e3e",
     colorTextBase: "#2d3748",
     fontSize: 16,
     colorBgContainer: "#ffffff",

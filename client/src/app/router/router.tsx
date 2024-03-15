@@ -1,5 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LoginPage, MainPage, RegisterPage, TasksPage } from "src/pages";
+import {
+  CreatePage,
+  EditPage,
+  LoginPage,
+  MainPage,
+  RegisterPage,
+  TaskPage,
+  TasksPage,
+} from "src/pages";
 import { ROUTES } from "src/shared/constants";
 import { Layout } from "src/shared/ui";
 
@@ -23,6 +31,18 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.tasks,
         element: <TasksPage />,
+      },
+      {
+        path: `${ROUTES.tasks}/:taskId`,
+        element: <TaskPage />,
+      },
+      {
+        path: `${ROUTES.tasks}/create`,
+        element: <CreatePage />,
+      },
+      {
+        path: `${ROUTES.tasks}/:taskId/edit`,
+        element: <EditPage />,
       },
     ],
   },

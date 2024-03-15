@@ -1,13 +1,6 @@
 import styled from "@emotion/styled";
 import { SPACE } from "src/shared/theme";
 
-export const Layout = styled.section`
-  align-content: center;
-  display: grid;
-  justify-items: center;
-  padding: 96px 0;
-`;
-
 export const FormContainer = styled.div`
   display: grid;
   padding: ${({ theme }) => theme.paddingXL}px;
