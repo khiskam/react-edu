@@ -26,9 +26,11 @@ export const TaskPage = () => {
           <Col span={24}>
             <Typography.Text>{item.descr}</Typography.Text>
           </Col>
-          <Col span={24}>
-            <Checkbox>Выполнено</Checkbox>
-          </Col>
+          {item.isCompleted ? (
+            <Col span={24}>
+              <Checkbox disabled>Выполнено</Checkbox>
+            </Col>
+          ) : null}
           <Col span={24}>
             <Typography.Text strong>Дата изменения: </Typography.Text>
             <Typography.Text>01.01.2024</Typography.Text>
