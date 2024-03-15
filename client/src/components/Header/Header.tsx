@@ -1,26 +1,28 @@
-import { Flex, Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
 import { useLocation } from "react-router-dom";
 import { Container, Logo } from "src/shared/ui";
 import { links } from "./constants";
 
-import { headerStyles, menuStyles } from "./styled";
+import { HeaderMenu, headerStyles, menuStyles } from "./styled";
+import { useTheme } from "@emotion/react";
 
 export const Header = () => {
   const location = useLocation();
-  const { token } = theme.useToken();
+  const theme = useTheme();
 
   return (
-    <Layout.Header className={headerStyles(token)}>
+    <Layout.Header className={headerStyles(theme)}>
       <Container>
-        <Flex>
+        <HeaderMenu>
           <Logo />
+
           <Menu
             mode="horizontal"
             selectedKeys={[location.pathname]}
             items={links}
             className={menuStyles}
           />
-        </Flex>
+        </HeaderMenu>
       </Container>
     </Layout.Header>
   );

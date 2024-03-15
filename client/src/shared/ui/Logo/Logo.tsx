@@ -1,13 +1,13 @@
 import { ROUTES } from "src/shared/constants";
 import { Link } from "react-router-dom";
 import { logoStyles } from "./styled";
-import { theme } from "antd";
+import { useTheme } from "@emotion/react";
 
 export const Logo = () => {
-  const { token } = theme.useToken();
+  const theme = useTheme();
 
   return (
-    <Link to={ROUTES.main} className={logoStyles(token)}>
+    <Link to={ROUTES.main} className={logoStyles(theme)}>
       TASKS
     </Link>
   );

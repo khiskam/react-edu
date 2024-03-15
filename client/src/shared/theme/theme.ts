@@ -1,5 +1,12 @@
 import { ThemeConfig, theme } from "antd";
-import { HEADER_HEIGHT } from "./height";
+
+export const HEADER_HEIGHT = 64;
+
+export const SPACE = {
+  gap12: 12,
+  gap32: 32,
+  padding96: 96,
+};
 
 export const config: ThemeConfig = {
   token: {

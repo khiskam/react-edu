@@ -1,2 +1,2 @@
 export * from "./theme";
-export * from "./height";
+export * from "./ThemeProvider";
