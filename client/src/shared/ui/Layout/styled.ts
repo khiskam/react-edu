@@ -1,13 +1,13 @@
-import { Layout } from "antd";
-import styled from "styled-components";
+import { css } from "@emotion/css";
 
-export const Container = styled(Layout)`
+export const layoutStyles = css`
   display: flex;
   min-height: 100vh;
 
   flex-direction: column;
 `;
 
-export const OutletContainer = styled.div`
+export const outletContainerStyles = css`
+  display: grid;
   flex-grow: 1;
 `;

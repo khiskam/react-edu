@@ -4,6 +4,10 @@ import { ROUTES } from "src/shared/constants";
 
 const NAV_LINKS = [
   {
+    title: "Задачи",
+    route: ROUTES.tasks,
+  },
+  {
     title: "Войти",
     route: ROUTES.signin,
   },

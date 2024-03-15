@@ -1,5 +1,4 @@
-import { ThemeConfig } from "antd";
-import { BREAKPOINTS } from "./breakpoints";
+import { ThemeConfig, theme } from "antd";
 import { HEADER_HEIGHT } from "./height";
 
 export const config: ThemeConfig = {
@@ -11,6 +10,7 @@ export const config: ThemeConfig = {
     colorError: "#c53030",
     colorTextBase: "#2d3748",
     fontSize: 16,
+    colorBgContainer: "#ffffff",
     fontSizeHeading1: 32,
     fontSizeHeading2: 24,
     fontSizeHeading3: 16,
@@ -18,23 +18,6 @@ export const config: ThemeConfig = {
     fontSizeLG: 20,
     fontSizeXL: 24,
     borderRadius: 8,
-    screenXS: BREAKPOINTS.xs,
-    screenXSMin: BREAKPOINTS.xs,
-    screenXSMax: BREAKPOINTS.xsMax,
-    screenSM: BREAKPOINTS.sm,
-    screenSMMin: BREAKPOINTS.sm,
-    screenSMMax: BREAKPOINTS.smMax,
-    screenMD: BREAKPOINTS.md,
-    screenMDMin: BREAKPOINTS.md,
-    screenMDMax: BREAKPOINTS.mdMax,
-    screenLG: BREAKPOINTS.lg,
-    screenLGMin: BREAKPOINTS.lg,
-    screenLGMax: BREAKPOINTS.lgMax,
-    screenXL: BREAKPOINTS.xl,
-    screenXLMin: BREAKPOINTS.xl,
-    screenXLMax: BREAKPOINTS.xlMax,
-    screenXXL: BREAKPOINTS.xxl,
-    screenXXLMin: BREAKPOINTS.xxl,
   },
   components: {
     Menu: {
@@ -43,9 +26,18 @@ export const config: ThemeConfig = {
     },
     Layout: {
       headerBg: "transparent",
+      footerBg: "transparent",
+      bodyBg: "transparent",
       headerHeight: HEADER_HEIGHT,
       headerPadding: 0,
       footerPadding: 0,
+    },
+    Card: {
+      colorBorderSecondary: theme.getDesignToken().colorBorder,
+      borderRadiusLG: 4,
+    },
+    Checkbox: {
+      borderRadiusSM: 4,
     },
   },
 } as const;

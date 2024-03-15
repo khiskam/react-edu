@@ -1,16 +1,17 @@
+import { Layout as AntdLayout } from "antd";
 import { Outlet } from "react-router-dom";
 import { Header } from "src/components";
 import { Footer } from "src/components";
-import { Container, OutletContainer } from "./styled";
+import { layoutStyles, outletContainerStyles } from "./styled";
 
 export const Layout = () => {
   return (
-    <Container>
+    <AntdLayout className={layoutStyles}>
       <Header />
-      <OutletContainer>
+      <div className={outletContainerStyles}>
         <Outlet />
-      </OutletContainer>
+      </div>
       <Footer />
-    </Container>
+    </AntdLayout>
   );
 };
