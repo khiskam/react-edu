@@ -1,8 +1,9 @@
-import { Container } from "src/shared/ui";
-import { Flex, Layout, Typography } from "antd";
-import { Logo } from "src/shared/ui";
-import { footerStyles } from "./styled";
 import { useTheme } from "@emotion/react";
+import { Flex, Layout, Typography } from "antd";
+import { Container } from "src/shared/ui";
+import { Logo } from "src/shared/ui";
+
+import { footerStyles } from "./styled";
 
 export const Footer = () => {
   const theme = useTheme();

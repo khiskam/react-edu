@@ -1,4 +1,4 @@
-import { ThemeConfig, theme } from "antd";
+import { theme, ThemeConfig } from "antd";
 
 export const HEADER_HEIGHT = 64;
 

@@ -1,4 +1,4 @@
-import { object, string, ref, InferType } from "yup";
+import { InferType, object, ref, string } from "yup";
 
 export const schema = object({
   email: string()

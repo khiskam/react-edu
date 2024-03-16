@@ -1,10 +1,11 @@
 import { Button, Checkbox, Col, Flex, Modal, Row, Typography } from "antd";
-import { Container, PageLayout } from "src/shared/ui";
-import { data } from "../data";
-import { useNavigate, useParams } from "react-router-dom";
-import { SPACE } from "src/shared/theme";
-import { ROUTES } from "src/shared/constants";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { ROUTES } from "src/shared/constants";
+import { SPACE } from "src/shared/theme";
+import { Container, PageLayout } from "src/shared/ui";
+
+import { data } from "../data";
 
 export const TaskPage = () => {
   const { taskId } = useParams();

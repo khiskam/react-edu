@@ -1,8 +1,9 @@
-import { Container, FormContainer, PageLayout } from "src/shared/ui";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
-import { FormType, schema } from "./types";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Checkbox, Form, Input, Typography } from "antd";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Container, FormContainer, PageLayout } from "src/shared/ui";
+
+import { FormType, schema } from "./types";
 
 export const EditPage = () => {
   const { handleSubmit, control, getValues } = useForm<FormType>({

@@ -1,8 +1,9 @@
-import { Container, FormContainer, PageLayout } from "src/shared/ui";
-import { Button, Form, Input, Typography } from "antd";
-import { FormType, schema } from "./types";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Form, Input, Typography } from "antd";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Container, FormContainer, PageLayout } from "src/shared/ui";
+
+import { FormType, schema } from "./types";
 
 export const CreatePage = () => {
   const { handleSubmit, control } = useForm<FormType>({

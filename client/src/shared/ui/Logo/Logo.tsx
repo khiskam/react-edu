@@ -1,7 +1,8 @@
-import { ROUTES } from "src/shared/constants";
-import { Link } from "react-router-dom";
-import { logoStyles } from "./styled";
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
+import { ROUTES } from "src/shared/constants";
+
+import { logoStyles } from "./styled";
 
 export const Logo = () => {
   const theme = useTheme();

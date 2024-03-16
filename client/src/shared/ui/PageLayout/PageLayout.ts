@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { SPACE } from "src/shared/theme";
+
 import { PageLayoutProps } from "./types";
 
 export const PageLayout = styled.section<PageLayoutProps>`

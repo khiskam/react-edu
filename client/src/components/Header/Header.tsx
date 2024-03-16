@@ -1,10 +1,10 @@
+import { useTheme } from "@emotion/react";
 import { Layout, Menu } from "antd";
 import { useLocation } from "react-router-dom";
 import { Container, Logo } from "src/shared/ui";
-import { links } from "./constants";
 
+import { links } from "./constants";
 import { HeaderMenu, headerStyles, menuStyles } from "./styled";
-import { useTheme } from "@emotion/react";
 
 export const Header = () => {
   const location = useLocation();

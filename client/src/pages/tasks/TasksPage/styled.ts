@@ -1,7 +1,10 @@
 import { css } from "@emotion/css";
+import { Theme } from "@emotion/react";
 
-export const cardStyles = css`
-  &:hover {
-    box-shadow: 2px 2px 24px 2px rgba(0, 0, 0, 0.08);
+export const searchInputStyles = (theme: Partial<Theme>) => css`
+  width: 52%;
+
+  @media screen and (max-width: ${theme.screenMD}px) {
+    width: 100%;
   }
 `;

@@ -1,9 +1,10 @@
+import { useTheme } from "@emotion/react";
 import { Col, Row, Typography } from "antd";
-import { Container, PageLayout } from "src/shared/ui";
 import Image from "src/shared/icons/banner.svg?react";
 import { SPACE } from "src/shared/theme";
+import { Container, PageLayout } from "src/shared/ui";
+
 import { title } from "./styled";
-import { useTheme } from "@emotion/react";
 
 export const MainPage = () => {
   const theme = useTheme();
