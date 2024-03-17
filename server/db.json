@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "email": "email@mail.ru",
+      "password": "$2a$10$zffBz6kTUr.reBZZzItRoeElHsKO.uP43laTj3/hSSzNQ9GzvFXYC",
+      "id": 1
+    }
+  ],
+  "tasks": []
+}

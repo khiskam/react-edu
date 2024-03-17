@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.11.27",
-    "typescript": "^5.4.2"
+  "scripts": {
+    "start": "json-server db.json -m ./node_modules/json-server-auth -r routes.json"
   },
-  "dependencies": {}
+  "dependencies": {
+    "json-server": "0",
+    "json-server-auth": "^2.1.0"
+  },
+  "devDependencies": {}
 }
