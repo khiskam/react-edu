@@ -1,6 +1,5 @@
 import { SelectProps } from "antd";
 
-export type SelectFieldProps = {
+export type SelectFieldProps = SelectProps & {
   label: string;
-  options: SelectProps["options"];
 };
