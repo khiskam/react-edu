@@ -38,3 +38,15 @@ export const TITLE_SELECT_DATA: SelectProps["options"] = [
   { value: Sort.Asc, label: "По алфавиту" },
   { value: Sort.Desc, label: "В обратном порядке" },
 ];
+
+export const FILTER_MAP: Record<string, { key: string; values: string[] }> = {
+  _ftype: {
+    key: "isCompleted",
+    values: [TabFilter.Completed, TabFilter.Incompleted],
+  },
+};
+
+export const SORT_MAP: Record<string, string> = {
+  _sdate: "date",
+  _stitle: "title",
+};

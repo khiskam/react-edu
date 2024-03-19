@@ -11,8 +11,9 @@ import { SelectField, Tabs, TaskCard } from "src/shared/ui";
 import { data } from "../data";
 import {
   DATE_SELECT_DATA,
+  FILTER_MAP,
   Sort,
-  TabFilter,
+  SORT_MAP,
   TABS_DATA,
   TITLE_SELECT_DATA,
 } from "./contstants";
@@ -36,40 +37,42 @@ export const TasksPage = () => {
   });
 
   useLayoutEffect(() => {
-    const filterMap: Record<string, { key: string; values: string[] }> = {
-      _ftype: {
-        key: "isCompleted",
-        values: [TabFilter.Completed, TabFilter.Incompleted],
-      },
-    };
-    const sortMap: Record<string, string> = {
-      _sdate: "date",
-      _stitle: "title",
-    };
     const sort: { sort: string[]; order: string[] } = { sort: [], order: [] };
     const filter: string[] = [];
 
     searchParams.forEach((value, key) => {
-      if (key in sortMap) {
-        sort.sort.push(sortMap[key]);
+      if (key in SORT_MAP) {
         if (value === Sort.Asc) {
+          sort.sort.push(SORT_MAP[key]);
           sort.order.push("asc");
         } else if (value === Sort.Desc) {
+          sort.sort.push(SORT_MAP[key]);
           sort.order.push("desc");
         }
-      } else if (key in filterMap) {
-        const v = filterMap[key].values.find((item) => value === item);
+      } else if (key in FILTER_MAP) {
+        const v = FILTER_MAP[key].values.find((item) => value === item);
 
         if (v) {
-          filter.push(`${filterMap[key].key}=${v}`);
+          filter.push(`${FILTER_MAP[key].key}=${v}`);
         }
       }
 
-      console.log(
-        `_sort=${sort.sort.join(",")}`,
-        `_order=${sort.order.join(",")}`,
-        filter.join(",")
-      );
+      const query: string[] = [];
+
+      if (sort.sort.length > 0) {
+        query.push(
+          `_sort=${sort.sort.join(",")}`,
+          `_order=${sort.order.join(",")}`
+        );
+      }
+
+      if (filter.length > 0) {
+        query.push(filter.join(","));
+      }
+
+      if (query.length > 0) {
+        console.log(`?${query.join("&")}`);
+      }
     });
   }, [searchParams, search]);
 
