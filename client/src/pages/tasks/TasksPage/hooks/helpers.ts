@@ -1,4 +1,4 @@
-import { data, Task } from "../../data";
+import { Task } from "../../data";
 import { NONE, Sort, TabFilter } from "../contstants";
 
 export const changeParams = (
@@ -16,12 +16,12 @@ export const changeParams = (
 
 export const FILTER_MAP = {
   _search: {
-    fn: (query: string, value: Task) => {
+    fn: (value: Task, query: string) => {
       return value.title.toLowerCase().includes(query);
     },
   },
   _type: {
-    fn: (query: string, value: Task) => {
+    fn: (value: Task, query: string) => {
       if (
         (query === TabFilter.Completed && !value.isCompleted) ||
         (query === TabFilter.Incompleted && value.isCompleted)
@@ -36,31 +36,35 @@ export const FILTER_MAP = {
 
 type FilterKeys = keyof typeof FILTER_MAP;
 
+type F = {
+  key: FilterKeys;
+  query: string;
+};
+
 type TaskKeys = keyof Task;
 
-export const sortAccelerator = (
-  a: Task,
-  b: Task,
-  key: TaskKeys,
-  order: Sort.Asc | Sort.Desc
-) => {
-  let c = 0;
+type SortType = {
+  key: TaskKeys;
+  order: Sort.Asc | Sort.Desc;
+};
+
+export const sortAccelerator = (a: Task, b: Task, pair: SortType) => {
+  const { key, order } = pair;
+  let value = 0;
+
   if (a[key] > b[key]) {
-    c = 1;
+    value = 1;
   } else if (a[key] < b[key]) {
-    c = -1;
+    value = -1;
   }
 
-  return c * (order === Sort.Asc ? 1 : -1);
+  return value * (order === Sort.Asc ? 1 : -1);
 };
 
-export const sort = (a: Task, b: Task, keys: TaskKeys[]) => {
-  return keys.reduce(
-    (prev, curr) => prev || sortAccelerator(a, b, curr, Sort.Asc),
-    0
-  );
+export const sort = (pairs: SortType[]) => (a: Task, b: Task) => {
+  return pairs.reduce((prev, curr) => prev || sortAccelerator(a, b, curr), 0);
 };
 
-// export const filter = ()
-
-console.log(data.sort((a, b) => sort(a, b, ["title", "createdAt"])));
+export const filter = (keys: F[]) => (a: Task) => {
+  return keys.every((item) => FILTER_MAP[item.key].fn(item.query, a));
+};
