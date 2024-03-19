@@ -57,6 +57,7 @@ export const RegisterPage = () => {
                   help={error?.message}
                 >
                   <Input.Password
+                    autoComplete="on"
                     placeholder="Введите пароль"
                     value={value}
                     name={name}
@@ -80,6 +81,7 @@ export const RegisterPage = () => {
                   help={error?.message}
                 >
                   <Input.Password
+                    autoComplete="on"
                     placeholder="Подтвердит пароль"
                     value={value}
                     name={name}

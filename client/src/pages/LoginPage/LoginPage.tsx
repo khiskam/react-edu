@@ -57,6 +57,7 @@ export const LoginPage = () => {
                   help={error?.message}
                 >
                   <Input.Password
+                    autoComplete="on"
                     placeholder="Введите пароль"
                     value={value}
                     name={name}
