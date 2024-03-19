@@ -1,63 +1,71 @@
+export type Task = {
+  id: number;
+  title: string;
+  descr: string;
+  isCompleted: boolean;
+  createdAt: Date;
+};
+
 export const data = [
   {
     id: 1,
-    title: "Задача 1",
+    title: "задача",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: true,
-    createdAt: new Date(),
+    createdAt: new Date(2023, 5, 23),
   },
   {
     id: 2,
-    title: "Задача 2",
+    title: "задача",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: true,
     createdAt: new Date(),
   },
   {
     id: 3,
-    title: "Задача 2",
+    title: "ура",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 4,
-    title: "Задача 2",
+    title: "осень",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 5,
-    title: "Задача 2",
+    title: "лето",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 6,
-    title: "Задача 2",
+    title: "зима",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 7,
-    title: "Задача 2",
+    title: "март",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 8,
-    title: "Задача 2",
+    title: "апрель",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
   },
   {
     id: 9,
-    title: "Задача 2",
+    title: "май",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),
@@ -65,7 +73,7 @@ export const data = [
 
   {
     id: 10,
-    title: "Задача 2",
+    title: "июнь",
     descr: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     isCompleted: false,
     createdAt: new Date(),

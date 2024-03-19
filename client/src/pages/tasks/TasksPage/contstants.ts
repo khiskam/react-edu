@@ -1,52 +1,31 @@
 import { SelectProps, TabsProps } from "antd";
 
+export const NONE = "";
+
 export enum TabFilter {
-  All = "all",
-  Completed = "completed",
-  Incompleted = "incompleted",
+  Completed = "true",
+  Incompleted = "false",
 }
 
 export enum Sort {
-  No = "no",
   Asc = "asc",
   Desc = "desc",
 }
 
 export const TABS_DATA: TabsProps["items"] = [
-  {
-    key: TabFilter.All,
-    label: "Все",
-  },
-  {
-    key: TabFilter.Completed,
-    label: "Завершенные",
-  },
-  {
-    key: TabFilter.Incompleted,
-    label: "Незавершенные",
-  },
+  { key: NONE, label: "Все" },
+  { key: TabFilter.Completed, label: "Завершенные" },
+  { key: TabFilter.Incompleted, label: "Незавершенные" },
 ];
 
 export const DATE_SELECT_DATA: SelectProps["options"] = [
-  { value: Sort.No, label: "Не сортировать" },
+  { value: NONE, label: "Не сортировать" },
   { value: Sort.Asc, label: "По возрастанию" },
   { value: Sort.Desc, label: "По убыванию" },
 ];
 
 export const TITLE_SELECT_DATA: SelectProps["options"] = [
-  { value: Sort.No, label: "Не сортировать" },
+  { value: NONE, label: "Не сортировать" },
   { value: Sort.Asc, label: "По алфавиту" },
   { value: Sort.Desc, label: "В обратном порядке" },
 ];
-
-export const FILTER_MAP: Record<string, { key: string; values: string[] }> = {
-  _ftype: {
-    key: "isCompleted",
-    values: [TabFilter.Completed, TabFilter.Incompleted],
-  },
-};
-
-export const SORT_MAP: Record<string, string> = {
-  _sdate: "date",
-  _stitle: "title",
-};
