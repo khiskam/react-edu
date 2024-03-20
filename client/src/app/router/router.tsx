@@ -30,5 +30,5 @@ export const router = (
         ],
       },
     ],
-    { basename: "https://khiskam.github.io/react-edu" }
+    { basename: import.meta.env.VITE_BASE }
   );

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://khiskam.github.io/react-edu",
+  "homepage": ".",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -26,6 +26,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.30",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
