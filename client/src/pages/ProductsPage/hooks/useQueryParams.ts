@@ -8,7 +8,7 @@ export const useQueryParams = () => {
   const { run } = useDebounceFn(
     (key: string, value: string) => {
       setParam(key, value);
-      setSearchParams((prev) => changeParams(prev, ["_search", value]));
+      setSearchParams((prev) => changeParams(prev, [key, value]));
     },
     {
       wait: 400,

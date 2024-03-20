@@ -8,8 +8,8 @@ export const Logo = () => {
   const theme = useTheme();
 
   return (
-    <Link to={ROUTES.main} className={logoStyles(theme)}>
-      TASKS
+    <Link to={ROUTES.products} className={logoStyles(theme)}>
+      PRODUCTS
     </Link>
   );
 };

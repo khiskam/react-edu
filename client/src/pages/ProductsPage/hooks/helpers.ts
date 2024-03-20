@@ -1,5 +1,7 @@
-import { Task } from "../../data";
-import { NONE, SORT, TabFilter } from "../contstants";
+import { Categories } from "src/shared/constants";
+import { Product } from "src/shared/types";
+
+import { NONE, SORT } from "../contstants";
 
 export const changeParams = (
   searchParams: URLSearchParams,
@@ -16,15 +18,19 @@ export const changeParams = (
 
 export const FILTER_MAP = {
   _search: {
-    fn: (value: Task, query: string) => {
+    fn: (value: Product, query: string) => {
       return value.title.toLowerCase().includes(query);
     },
   },
   _type: {
-    fn: (value: Task, query: string) => {
+    fn: (value: Product, query: string) => {
       if (
-        (query === TabFilter.Completed && !value.isCompleted) ||
-        (query === TabFilter.Incompleted && value.isCompleted)
+        (query === Categories.Constructor &&
+          value.category !== Categories.Constructor) ||
+        (query === Categories.ForBoys &&
+          value.category !== Categories.ForBoys) ||
+        (query === Categories.ForGirls &&
+          value.category !== Categories.ForGirls)
       ) {
         return false;
       } else {
@@ -34,12 +40,22 @@ export const FILTER_MAP = {
   },
 } as const;
 
-export const SORT_MAP: Record<string, TaskKeys> = {
+type ProductKeys = keyof Product;
+
+export const SORT_MAP: Record<string, ProductKeys> = {
+  _price: "price",
   _title: "title",
-  _date: "createdAt",
+  _balance: "count",
 } as const;
 
-export const sortAccelerator = (a: Task, b: Task, pair: SortType) => {
+type OrderType = (typeof SORT)[keyof typeof SORT];
+
+type SortType = {
+  key: ProductKeys;
+  order: OrderType;
+};
+
+export const sortAccelerator = (a: Product, b: Product, pair: SortType) => {
   const { key, order } = pair;
   let value = 0;
 
@@ -53,25 +69,17 @@ export const sortAccelerator = (a: Task, b: Task, pair: SortType) => {
 };
 
 type FilterKeys = keyof typeof FILTER_MAP;
-type OrderType = (typeof SORT)[keyof typeof SORT];
 
 type FilterType = {
   key: FilterKeys;
   query: string;
 };
 
-type TaskKeys = keyof Task;
-
-type SortType = {
-  key: TaskKeys;
-  order: OrderType;
-};
-
-export const sort = (pairs: SortType[]) => (a: Task, b: Task) => {
+export const sort = (pairs: SortType[]) => (a: Product, b: Product) => {
   return pairs.reduce((prev, curr) => prev || sortAccelerator(a, b, curr), 0);
 };
 
-export const filter = (keys: FilterType[]) => (a: Task) => {
+export const filter = (keys: FilterType[]) => (a: Product) => {
   return keys.every((item) => FILTER_MAP[item.key].fn(a, item.query));
 };
 
@@ -83,7 +91,7 @@ const isOrder = (key: string): key is OrderType => {
   return key in SORT;
 };
 
-export const filterSort = (searchParams: URLSearchParams, data: Task[]) => {
+export const filterSort = (searchParams: URLSearchParams, data: Product[]) => {
   const filterArr: FilterType[] = [];
   const sortArr: SortType[] = [];
 

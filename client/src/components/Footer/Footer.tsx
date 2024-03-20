@@ -13,7 +13,7 @@ export const Footer = () => {
       <Container>
         <Flex align="center" justify="space-between">
           <Logo />
-          <Typography.Text>&#169; Copyright TASKS</Typography.Text>
+          <Typography.Text>&#169; Copyright PRODUCTS</Typography.Text>
         </Flex>
       </Container>
     </Layout.Footer>

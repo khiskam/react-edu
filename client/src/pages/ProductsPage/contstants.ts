@@ -1,11 +1,7 @@
 import { SelectProps, TabsProps } from "antd";
+import { Categories } from "src/shared/constants";
 
 export const NONE = "";
-
-export enum TabFilter {
-  Completed = "true",
-  Incompleted = "false",
-}
 
 export const SORT = {
   asc: "asc",
@@ -14,17 +10,18 @@ export const SORT = {
 
 export const TABS_DATA: TabsProps["items"] = [
   { key: NONE, label: "Все" },
-  { key: TabFilter.Completed, label: "Завершенные" },
-  { key: TabFilter.Incompleted, label: "Незавершенные" },
+  { key: Categories.Constructor, label: "Конструктор" },
+  { key: Categories.ForBoys, label: "Для мальчиков" },
+  { key: Categories.ForGirls, label: "Для девочек" },
 ];
 
-export const DATE_SELECT_DATA: SelectProps["options"] = [
+export const NUMBER_SELECT_DATA: SelectProps["options"] = [
   { value: NONE, label: "Не сортировать" },
   { value: SORT.asc, label: "По возрастанию" },
   { value: SORT.desc, label: "По убыванию" },
 ];
 
-export const TITLE_SELECT_DATA: SelectProps["options"] = [
+export const STRING_SELECT_DATA: SelectProps["options"] = [
   { value: NONE, label: "Не сортировать" },
   { value: SORT.asc, label: "По алфавиту" },
   { value: SORT.desc, label: "В обратном порядке" },

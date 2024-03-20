@@ -4,16 +4,12 @@ import { ROUTES } from "src/shared/constants";
 
 const NAV_LINKS = [
   {
-    title: "Задачи",
-    route: ROUTES.tasks,
+    title: "Товары",
+    route: ROUTES.products,
   },
   {
-    title: "Войти",
-    route: ROUTES.signin,
-  },
-  {
-    title: "Регистрация",
-    route: ROUTES.signup,
+    title: "Корзина",
+    route: ROUTES.cart,
   },
 ];
 

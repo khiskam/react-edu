@@ -1,49 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
-import {
-  CreatePage,
-  EditPage,
-  LoginPage,
-  MainPage,
-  RegisterPage,
-  TaskPage,
-  TasksPage,
-} from "src/pages";
+import { CartPage, ProductPage, ProductsPage } from "src/pages";
 import { ROUTES } from "src/shared/constants";
+import { Product } from "src/shared/types";
 import { Layout } from "src/shared/ui";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: ROUTES.main,
-        element: <MainPage />,
-      },
-      {
-        path: ROUTES.signin,
-        element: <LoginPage />,
-      },
-      {
-        path: ROUTES.signup,
-        element: <RegisterPage />,
-      },
-      {
-        path: ROUTES.tasks,
-        element: <TasksPage />,
-      },
-      {
-        path: `${ROUTES.tasks}/:taskId`,
-        element: <TaskPage />,
-      },
-      {
-        path: `${ROUTES.tasks}/create`,
-        element: <CreatePage />,
-      },
-      {
-        path: `${ROUTES.tasks}/:taskId/edit`,
-        element: <EditPage />,
-      },
-    ],
-  },
-]);
+export const router = (
+  data: Product[],
+  add: (id: number) => void,
+  order: (id: number) => void
+) =>
+  createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: ROUTES.products,
+          element: <ProductsPage data={data} />,
+        },
+        {
+          path: `${ROUTES.products}:productId`,
+          element: <ProductPage data={data} addToCart={add} order={order} />,
+        },
+        {
+          path: `${ROUTES.cart}`,
+          element: <CartPage data={data} />,
+        },
+      ],
+    },
+  ]);

@@ -1,4 +1,3 @@
-export * from "./LoginPage";
-export * from "./MainPage";
-export * from "./RegisterPage";
-export * from "./tasks";
+export * from "./CartPage";
+export * from "./ProductPage";
+export * from "./ProductsPage";
