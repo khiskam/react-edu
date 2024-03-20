@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/react-edu/",
   plugins: [react(), svgr()],
   resolve: {
     alias: {

@@ -9,23 +9,26 @@ export const router = (
   add: (id: number) => void,
   order: (id: number) => void
 ) =>
-  createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: ROUTES.products,
-          element: <ProductsPage data={data} />,
-        },
-        {
-          path: `${ROUTES.products}:productId`,
-          element: <ProductPage data={data} addToCart={add} order={order} />,
-        },
-        {
-          path: `${ROUTES.cart}`,
-          element: <CartPage data={data} />,
-        },
-      ],
-    },
-  ]);
+  createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          {
+            path: ROUTES.products,
+            element: <ProductsPage data={data} />,
+          },
+          {
+            path: `${ROUTES.products}:productId`,
+            element: <ProductPage data={data} addToCart={add} order={order} />,
+          },
+          {
+            path: `${ROUTES.cart}`,
+            element: <CartPage data={data} />,
+          },
+        ],
+      },
+    ],
+    { basename: "https://khiskam.github.io/react-edu" }
+  );
