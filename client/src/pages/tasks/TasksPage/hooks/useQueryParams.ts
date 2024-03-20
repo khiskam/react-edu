@@ -21,5 +21,5 @@ export const useQueryParams = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     run("_search", e.target.value.toLowerCase());
 
-  return { setParam, onChange };
+  return { setParam, onChange, searchParams };
 };

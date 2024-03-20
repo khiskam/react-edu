@@ -1,5 +1,5 @@
 import { Task } from "../../data";
-import { NONE, Sort, TabFilter } from "../contstants";
+import { NONE, SORT, TabFilter } from "../contstants";
 
 export const changeParams = (
   searchParams: URLSearchParams,
@@ -34,19 +34,10 @@ export const FILTER_MAP = {
   },
 } as const;
 
-type FilterKeys = keyof typeof FILTER_MAP;
-
-type F = {
-  key: FilterKeys;
-  query: string;
-};
-
-type TaskKeys = keyof Task;
-
-type SortType = {
-  key: TaskKeys;
-  order: Sort.Asc | Sort.Desc;
-};
+export const SORT_MAP: Record<string, TaskKeys> = {
+  _title: "title",
+  _date: "createdAt",
+} as const;
 
 export const sortAccelerator = (a: Task, b: Task, pair: SortType) => {
   const { key, order } = pair;
@@ -58,13 +49,65 @@ export const sortAccelerator = (a: Task, b: Task, pair: SortType) => {
     value = -1;
   }
 
-  return value * (order === Sort.Asc ? 1 : -1);
+  return value * (order === SORT.asc ? 1 : -1);
+};
+
+type FilterKeys = keyof typeof FILTER_MAP;
+type OrderType = (typeof SORT)[keyof typeof SORT];
+
+type FilterType = {
+  key: FilterKeys;
+  query: string;
+};
+
+type TaskKeys = keyof Task;
+
+type SortType = {
+  key: TaskKeys;
+  order: OrderType;
 };
 
 export const sort = (pairs: SortType[]) => (a: Task, b: Task) => {
   return pairs.reduce((prev, curr) => prev || sortAccelerator(a, b, curr), 0);
 };
 
-export const filter = (keys: F[]) => (a: Task) => {
+export const filter = (keys: FilterType[]) => (a: Task) => {
   return keys.every((item) => FILTER_MAP[item.key].fn(a, item.query));
+};
+
+const isFilterKey = (key: string): key is FilterKeys => {
+  return key in FILTER_MAP;
+};
+
+const isOrder = (key: string): key is OrderType => {
+  return key in SORT;
+};
+
+export const filterSort = (searchParams: URLSearchParams, data: Task[]) => {
+  const filterArr: FilterType[] = [];
+  const sortArr: SortType[] = [];
+
+  searchParams.forEach((value, key) => {
+    console.log(value, key);
+    if (isFilterKey(key)) {
+      filterArr.push({ key, query: value });
+    } else if (key in SORT_MAP && isOrder(value)) {
+      const item = SORT_MAP[key];
+      sortArr.push({ key: item, order: value });
+    }
+  });
+
+  let temp = data;
+
+  if (filterArr.length > 0) {
+    const filterrFn = filter(filterArr);
+    temp = temp.filter(filterrFn);
+  }
+
+  if (sortArr.length > 0) {
+    const sortFn = sort(sortArr);
+    temp = temp.sort(sortFn);
+  }
+
+  return temp;
 };

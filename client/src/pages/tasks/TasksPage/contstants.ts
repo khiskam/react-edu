@@ -7,10 +7,10 @@ export enum TabFilter {
   Incompleted = "false",
 }
 
-export enum Sort {
-  Asc = "asc",
-  Desc = "desc",
-}
+export const SORT = {
+  asc: "asc",
+  desc: "desc",
+} as const;
 
 export const TABS_DATA: TabsProps["items"] = [
   { key: NONE, label: "Все" },
@@ -20,12 +20,12 @@ export const TABS_DATA: TabsProps["items"] = [
 
 export const DATE_SELECT_DATA: SelectProps["options"] = [
   { value: NONE, label: "Не сортировать" },
-  { value: Sort.Asc, label: "По возрастанию" },
-  { value: Sort.Desc, label: "По убыванию" },
+  { value: SORT.asc, label: "По возрастанию" },
+  { value: SORT.desc, label: "По убыванию" },
 ];
 
 export const TITLE_SELECT_DATA: SelectProps["options"] = [
   { value: NONE, label: "Не сортировать" },
-  { value: Sort.Asc, label: "По алфавиту" },
-  { value: Sort.Desc, label: "В обратном порядке" },
+  { value: SORT.asc, label: "По алфавиту" },
+  { value: SORT.desc, label: "В обратном порядке" },
 ];
