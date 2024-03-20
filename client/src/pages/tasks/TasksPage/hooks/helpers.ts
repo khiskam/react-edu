@@ -66,5 +66,5 @@ export const sort = (pairs: SortType[]) => (a: Task, b: Task) => {
 };
 
 export const filter = (keys: F[]) => (a: Task) => {
-  return keys.every((item) => FILTER_MAP[item.key].fn(item.query, a));
+  return keys.every((item) => FILTER_MAP[item.key].fn(a, item.query));
 };
