@@ -1,8 +1,5 @@
 import "module-alias/register";
-import { cleanEnv, str } from "envalid";
+// import { prisma } from "@app/config/db";
+import { ENV } from "@app/config/env";
 
-const env = cleanEnv(process.env, {
-  INITIALS: str(),
-});
-
-console.log(env);
+console.log(ENV);
