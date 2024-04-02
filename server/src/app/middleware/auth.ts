@@ -1,7 +1,7 @@
 import { Token } from "@services/utils/token";
 import { Request, Response, NextFunction, RequestHandler } from "express";
 
-export const authenticatedMiddleware: RequestHandler = (
+export const authMiddleware: RequestHandler = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -18,7 +18,7 @@ export const authenticatedMiddleware: RequestHandler = (
       res.locals.user = { id: payload.sub, email: payload.email };
     }
 
-    // проверить пользовате
+    // проверить пользователя
     next();
   } catch (e) {
     return res.sendStatus(401);

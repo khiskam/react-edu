@@ -7,6 +7,5 @@ export type CreateTaskDTO = {
 export type UpdateTaskDTO = {
   title: string;
   description: string;
-  createdAt: Date;
   isCompleted: boolean;
 };
