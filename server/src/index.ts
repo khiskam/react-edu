@@ -1,5 +1,6 @@
 import "module-alias/register";
-// import { prisma } from "@app/config/db";
-import { ENV } from "@app/config/env";
+import { App } from "@app/App";
+import { ENV } from "./env";
 
-console.log(ENV);
+const app = new App(ENV.API_PORT);
+app.listen();
