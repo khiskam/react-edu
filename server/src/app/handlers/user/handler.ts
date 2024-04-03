@@ -2,37 +2,55 @@ import { loginSchema, registerSchema } from "./validation";
 import { validateMiddleware } from "@app/middleware/validate";
 import { RequestHandler } from "express";
 import { Router } from "express";
-import { Handler } from "../handler";
+import { Handler, handleError } from "../handler";
+import { UserService } from "@services/user/service";
+import { UserRepository } from "@infrastructure/repository/user.repository";
+import { prisma } from "@app/config/db";
+import { Token } from "@services/utils/token";
 
 export class UserHandler implements Handler {
   private readonly _path = "/";
   private _router: Router;
+  private _service: UserService;
 
   constructor() {
     this._router = Router();
 
+    const repo = new UserRepository(prisma);
+    this._service = new UserService(repo);
+
     this.initRoutes();
   }
+
+  private handleRegister: RequestHandler = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await this._service.register({ email, password });
+    const token = Token.create(user.id, user.email);
+
+    res.status(200).json({ user, token });
+  };
+
+  private handleLogin: RequestHandler = async (req, res) => {
+    const { email, password } = req.body;
+    const user = await this._service.login(email, password);
+
+    const token = Token.create(user.id, user.email);
+
+    res.status(200).json({ user, token });
+  };
 
   private initRoutes = () => {
     this._router.get(
       "/login",
-      validateMiddleware(registerSchema),
-      this.handlerLogin
+      validateMiddleware(loginSchema),
+      handleError(this.handleLogin)
     );
     this._router.post(
       "/register",
-      validateMiddleware(loginSchema),
-      this.handleRegister
+      validateMiddleware(registerSchema),
+      handleError(this.handleRegister)
     );
-  };
-
-  private handleRegister: RequestHandler = async (req, res) => {
-    res.status(200).json();
-  };
-
-  private handlerLogin: RequestHandler = async (req, res) => {
-    res.status(200).json();
   };
 
   get router() {
