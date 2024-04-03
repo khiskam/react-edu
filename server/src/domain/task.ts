@@ -7,3 +7,5 @@ export type Task = {
   isCompleted: boolean;
   userId: string;
 };
+
+export type TaskKeys = keyof Task;

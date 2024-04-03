@@ -18,14 +18,24 @@ export class UserService {
     if (!user) {
       throw new ClientError<UserKeys>(
         `Пользователя с email ${email} не существует`,
+        400,
         "email"
       );
     }
 
     if (!(await Password.compare(password, user.password))) {
-      throw new ClientError<UserKeys>("Неверный пароль", "password");
+      throw new ClientError<UserKeys>("Неверный пароль", 400, "password");
     }
 
     return user;
+  }
+
+  async existsByPayload(id: string, email: string) {
+    const user = await this._repo.existsByPayload(id, email);
+
+    if (!user) {
+      throw new ClientError("Пользователь не найден", 401);
+    }
+    return;
   }
 }

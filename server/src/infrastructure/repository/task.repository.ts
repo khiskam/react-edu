@@ -1,30 +1,49 @@
-import { Task } from "@domain/task";
-import { PrismaClient } from "@prisma/client";
+import { Task, TaskKeys } from "@domain/task";
+import { Prisma, PrismaClient } from "@prisma/client";
+
 import { CreateTaskDTO, UpdateTaskDTO } from "@services/task/dto";
 import { ITaskRepository } from "@services/task/interfaces";
+import { ClientError } from "@services/utils/client.error";
 
 export class TaskRepository implements ITaskRepository {
   constructor(private readonly _client: PrismaClient) {}
 
-  async getById(id: string): Promise<Task | null> {
-    return this._client.task.findFirst({ where: { id } });
+  async getById(id: string, userId: string): Promise<Task | null> {
+    return this._client.task.findFirst({ where: { id, userId } });
   }
 
   async getAll(): Promise<Task[]> {
-    return this._client.task.findMany();
+    return this._client.task.findMany({ where: { title: { contains: "" } } });
   }
 
   async create(user: CreateTaskDTO): Promise<Task> {
     return this._client.task.create({ data: user });
   }
 
-  // узнать выбрасывает ли ошибку ?
   async update(id: string, user: UpdateTaskDTO): Promise<Task> {
-    return this._client.task.update({ data: user, where: { id } });
+    try {
+      return await this._client.task.update({ data: user, where: { id } });
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        if (e.code === "P2025") {
+          throw new ClientError<TaskKeys>(`Задача ${id} не найдена`, 404, "id");
+        }
+      }
+
+      throw e;
+    }
   }
 
-  // узнать выбрасывает ли ошибку ?
-  async delete(id: string): Promise<void> {
-    await this._client.task.delete({ where: { id } });
+  async delete(id: string, userId: string): Promise<void> {
+    try {
+      await this._client.task.delete({ where: { id, userId } });
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        if (e.code === "P2025") {
+          throw new ClientError<TaskKeys>(`Задача ${id} не найдена`, 404, "id");
+        }
+      }
+      throw e;
+    }
   }
 }

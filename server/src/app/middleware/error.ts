@@ -15,7 +15,16 @@ export const errorMiddleware: func = (
   next: NextFunction
 ) => {
   if (err instanceof ClientError) {
-    return res.status(400).json({ errors: { [err.field]: err.message } });
+    switch (err.code) {
+      case 401:
+      case 404:
+      case 500:
+        return res.sendStatus(err.code);
+      default:
+        return res
+          .status(err.code)
+          .json({ errors: { [err.field]: err.message } });
+    }
   }
 
   res.sendStatus(500);

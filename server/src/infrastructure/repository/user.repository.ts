@@ -15,6 +15,7 @@ export class UserRepository implements IUserRepository {
         if (e.code === "P2002") {
           throw new ClientError<UserKeys>(
             `Пользователь ${user.email} уже существует`,
+            400,
             "email"
           );
         }
