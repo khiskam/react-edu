@@ -13,7 +13,10 @@
     "test": "jest",
     "test:watch": "yarn test --watch",
     "test:cover": "yarn test --coverage",
-    "migrate": "yarn prisma migrate dev"
+    "migrate": "yarn prisma migrate dev",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "prisma:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",

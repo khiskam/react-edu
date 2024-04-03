@@ -4,8 +4,8 @@ import { ITaskRepository } from "./interfaces";
 export class TaskService {
   constructor(private readonly _repo: ITaskRepository) {}
 
-  async getByID(id: string) {
-    return this._repo.getByID(id);
+  async getById(id: string) {
+    return this._repo.getById(id);
   }
 
   async getAll() {

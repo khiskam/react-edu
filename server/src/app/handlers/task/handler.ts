@@ -19,21 +19,20 @@ export class TaskHandler implements Handler {
   private initRoutes = () => {
     this._router.get("/", this.handleGetAll);
     this._router.post("/", validateMiddleware(createSchema), this.handlePost);
-
-    this._router.get("/:taskID", this.handleGetByID);
+    this._router.get("/:taskId", this.handleGetById);
     this._router.put(
-      "/:taskID",
+      "/:taskId",
       validateMiddleware(updateSchema),
       this.handlerUpdate
     );
-    this._router.delete("/:taskID", this.handlerDelete);
+    this._router.delete("/:taskId", this.handlerDelete);
   };
 
   private handleGetAll: RequestHandler = async (req, res) => {
     res.status(200).json();
   };
 
-  private handleGetByID: RequestHandler = async (req, res) => {
+  private handleGetById: RequestHandler = async (req, res) => {
     res.status(200).json();
   };
 

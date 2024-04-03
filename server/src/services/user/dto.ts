@@ -8,7 +8,7 @@ export type GetUserByEmailResultDTO = {
   password: string;
 };
 
-export type GetUserByIDDTO = {
+export type GetUserByIdDTO = {
   id: string;
   email: string;
 };

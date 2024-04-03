@@ -6,7 +6,7 @@ import { ITaskRepository } from "@services/task/interfaces";
 export class TaskRepository implements ITaskRepository {
   constructor(private readonly _client: PrismaClient) {}
 
-  async getByID(id: string): Promise<Task | null> {
+  async getById(id: string): Promise<Task | null> {
     return this._client.task.findFirst({ where: { id } });
   }
 
