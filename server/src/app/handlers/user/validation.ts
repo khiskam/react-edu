@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserSchema = z
+export const registerSchema = z
   .object({
     email: z
       .string({
@@ -21,7 +21,7 @@ export const createUserSchema = z
     path: ["confirmPassword"],
   });
 
-export const getByEmailSchema = z.object({
+export const loginSchema = z.object({
   email: z.string().min(1, "Поле Email обязательно для заполнения"),
   password: z.string().min(1, "Поле Пароль обязательно для заполнения"),
 });

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserSchema = z.object({
+export const createSchema = z.object({
   title: z.string().min(1, "Поле Заголовок обязательно для заполнения"),
   description: z
     .string()
@@ -8,7 +8,7 @@ export const createUserSchema = z.object({
     .max(1024, "Максимальное кол-во символов в поле Описание 1024"),
 });
 
-export const updateTaskSchema = z.object({
+export const updateSchema = z.object({
   title: z.string().min(1, "Поле Заголовок обязательно для заполнения"),
   description: z
     .string()
