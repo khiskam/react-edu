@@ -6,4 +6,4 @@
 
 ## Server
 
-[Здесь](./client/README.md) можно прочитать README для серверной части
+[Здесь](./server/README.md) можно прочитать README для серверной части
