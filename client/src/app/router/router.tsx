@@ -5,7 +5,6 @@ import {
   LoginPage,
   MainPage,
   RegisterPage,
-  TaskPage,
   TasksPage,
 } from "src/pages";
 import { ROUTES } from "src/shared/constants";
@@ -33,15 +32,11 @@ export const router = createBrowserRouter([
         element: <TasksPage />,
       },
       {
-        path: `${ROUTES.tasks}/:taskId`,
-        element: <TaskPage />,
-      },
-      {
-        path: `${ROUTES.tasks}/create`,
+        path: ROUTES.createTask,
         element: <CreatePage />,
       },
       {
-        path: `${ROUTES.tasks}/:taskId/edit`,
+        path: ROUTES.editTask(":taskId"),
         element: <EditPage />,
       },
     ],
