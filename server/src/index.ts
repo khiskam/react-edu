@@ -1,21 +1,8 @@
 import "module-alias/register";
-import express, { json } from "express";
-import cors from "cors";
-import userRouter from "@app/routes/User/router.js";
-import { ENV } from "@app/config/env.js";
+import { App } from "@app/App";
+import { ENV } from "./env";
+import { UserHandler } from "@app/handlers/user/handler";
+import { TaskHandler } from "@app/handlers/task/handler";
 
-const app = express();
-
-const corsOptions: cors.CorsOptions = {
-  origin: ENV.clientURL,
-};
-
-app.use(cors(corsOptions));
-app.use(json());
-app.use(userRouter);
-
-app.get("/");
-
-app.listen(ENV.port, () => {
-  console.log(`Running on port ${ENV.port}`);
-});
+const app = new App(ENV.API_PORT, new UserHandler(), new TaskHandler());
+app.listen();

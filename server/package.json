@@ -2,48 +2,60 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon",
-    "build": "rm -rf ./dist && tsc",
-    "start": "yarn build && node build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./dist && tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node --env-file .env ./dist/index.js\"",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "cd .. && husky install server/.husky",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "test:cover": "yarn test --coverage",
     "migrate": "yarn prisma migrate dev",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "yarn lint --fix"
+    "prisma:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^20.11.30",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
+    "@types/node": "^20.12.2",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
     "eslint": "^8.57.0",
-    "nodemon": "^3.1.0",
-    "prisma": "^5.11.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.3"
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "prisma": "^5.12.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.2",
+    "tsc-watch": "^6.2.0",
+    "typescript": "*"
   },
   "dependencies": {
-    "@prisma/client": "^5.11.0",
+    "@prisma/client": "^5.12.0",
     "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "envalid": "^8.0.0",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "zod": "^3.22.4"
   },
   "_moduleAliases": {
-    "@entities": "dist/entities",
-    "@services": "dist/services",
-    "@infrastructure": "dist/infrastructure",
-    "@app": "dist/app"
+    "@domain": "./dist/domain",
+    "@services": "./dist/services",
+    "@infrastructure": "./dist/infrastructure",
+    "@app": "./dist/app"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn lint",
+      "yarn test"
+    ]
   }
 }
