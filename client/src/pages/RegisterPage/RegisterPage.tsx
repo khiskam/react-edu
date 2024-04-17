@@ -16,7 +16,7 @@ export const RegisterPage = () => {
 
   return (
     <Container>
-      <PageLayout justify="center">
+      <PageLayout justify="center" align="center">
         <FormContainer>
           <Typography.Title level={2}>Регистрация</Typography.Title>
           <Form layout="vertical" onFinish={handleSubmit(onSubmit)}>

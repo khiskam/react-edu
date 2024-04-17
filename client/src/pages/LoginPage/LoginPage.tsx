@@ -16,7 +16,7 @@ export const LoginPage = () => {
 
   return (
     <Container>
-      <PageLayout justify="center">
+      <PageLayout justify="center" align="center">
         <FormContainer>
           <Typography.Title level={2}>Вход</Typography.Title>
           <Form layout="vertical" onFinish={handleSubmit(onSubmit)}>

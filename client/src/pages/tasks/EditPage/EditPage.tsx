@@ -1,12 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Flex, Form, Input, Typography } from "antd";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "src/shared/constants";
+import { SPACE } from "src/shared/theme";
 import { Container, FormContainer, PageLayout } from "src/shared/ui";
 
 import { FormType, schema } from "./types";
 
 export const EditPage = () => {
-  const { handleSubmit, control, getValues } = useForm<FormType>({
+  const { handleSubmit, control } = useForm<FormType>({
     defaultValues: { title: "", description: "", isCompleted: false },
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -14,11 +17,9 @@ export const EditPage = () => {
 
   const onSubmit: SubmitHandler<FormType> = (data) => console.log(data);
 
-  console.log(getValues("isCompleted"));
-
   return (
     <Container>
-      <PageLayout justify="center">
+      <PageLayout justify="center" align="center">
         <FormContainer>
           <Typography.Title level={2}>Изменить задачу</Typography.Title>
           <Form layout="vertical" onFinish={handleSubmit(onSubmit)}>
@@ -77,9 +78,14 @@ export const EditPage = () => {
                 </Form.Item>
               )}
             />
-            <Button type="primary" htmlType="submit">
-              Добавить
-            </Button>
+            <Flex gap={SPACE.gap8}>
+              <Button type="primary" htmlType="submit">
+                Сохрнаить
+              </Button>
+              <NavLink to={ROUTES.tasks}>
+                <Button type="default">Отмена</Button>
+              </NavLink>
+            </Flex>
           </Form>
         </FormContainer>
       </PageLayout>

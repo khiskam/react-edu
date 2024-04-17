@@ -1,6 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Flex, Form, Input, Typography } from "antd";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "src/shared/constants";
+import { SPACE } from "src/shared/theme";
 import { Container, FormContainer, PageLayout } from "src/shared/ui";
 
 import { FormType, schema } from "./types";
@@ -16,7 +19,7 @@ export const CreatePage = () => {
 
   return (
     <Container>
-      <PageLayout justify="center">
+      <PageLayout justify="center" align="center">
         <FormContainer>
           <Typography.Title level={2}>Добавить задачу</Typography.Title>
           <Form layout="vertical" onFinish={handleSubmit(onSubmit)}>
@@ -64,9 +67,14 @@ export const CreatePage = () => {
                 </Form.Item>
               )}
             />
-            <Button type="primary" htmlType="submit">
-              Добавить
-            </Button>
+            <Flex gap={SPACE.gap8}>
+              <Button type="primary" htmlType="submit">
+                Добавить
+              </Button>
+              <NavLink to={ROUTES.tasks}>
+                <Button type="default">Отмена</Button>
+              </NavLink>
+            </Flex>
           </Form>
         </FormContainer>
       </PageLayout>

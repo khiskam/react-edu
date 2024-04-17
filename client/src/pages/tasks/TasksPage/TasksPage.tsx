@@ -1,6 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Button, Col, Flex, Input, Row, Typography } from "antd";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ROUTES } from "src/shared/constants";
 import { SPACE } from "src/shared/theme";
 import { Container, PageLayout } from "src/shared/ui";
@@ -12,27 +12,28 @@ import { filterSort } from "./hooks/helpers";
 import { searchInputStyles } from "./styled";
 
 export const TasksPage = () => {
-  const navigate = useNavigate();
   const theme = useTheme();
   const { data } = useData();
-
-  const goToTaskPage = (id: number) => navigate(`${ROUTES.tasks}/${id}`);
-  const goToCreatePage = () => navigate(`${ROUTES.tasks}/create`);
 
   const { onChange, setParam, searchParams } = useQueryParams();
 
   return (
     <Container>
-      <PageLayout gap={32} justify="start">
+      <PageLayout gap={32}>
         <Typography.Title level={2}>Задачи</Typography.Title>
 
-        <Input.Search
-          placeholder="Введите название задачи"
-          enterButton="Искать"
-          className={searchInputStyles(theme)}
-          onChange={onChange}
-          allowClear
-        />
+        <Flex gap={SPACE.gap12} wrap="wrap">
+          <Input.Search
+            placeholder="Введите название задачи"
+            enterButton="Искать"
+            className={searchInputStyles(theme)}
+            onChange={onChange}
+            allowClear
+          />
+          <NavLink to={ROUTES.createTask}>
+            <Button type="primary">Добавить задачу</Button>
+          </NavLink>
+        </Flex>
 
         <Tabs
           items={TABS_DATA}
@@ -63,14 +64,10 @@ export const TasksPage = () => {
         <Row gutter={[SPACE.gap12, SPACE.gap12]}>
           {filterSort(searchParams, data).map((item) => (
             <Col key={item.id} sm={24} lg={12}>
-              <TaskCard data={item} onClick={() => goToTaskPage(item.id)} />
+              <TaskCard data={item} />
             </Col>
           ))}
         </Row>
-
-        <Button type="primary" onClick={goToCreatePage}>
-          Добавить задачу
-        </Button>
       </PageLayout>
     </Container>
   );
