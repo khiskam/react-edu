@@ -3,4 +3,6 @@ export const ROUTES = {
   signin: "/signin",
   signup: "/signup",
   tasks: "/tasks",
+  createTask: "/tasks/create",
+  editTask: (pathValue: string | number) => `/tasks/${pathValue}/edit`,
 } as const;

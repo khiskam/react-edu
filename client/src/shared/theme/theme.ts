@@ -4,6 +4,7 @@ export const HEADER_HEIGHT = 64;
 
 export const SPACE = {
   gap4: 4,
+  gap8: 8,
   gap12: 12,
   gap32: 32,
   padding96: 96,

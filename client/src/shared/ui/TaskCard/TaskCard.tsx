@@ -20,7 +20,7 @@ export const TaskCard = ({ data }: TaskCardProps) => {
       hoverable
       className={cardStyles}
       actions={[
-        <NavLink to={`${ROUTES.tasks}/${data.id}/edit`}>
+        <NavLink to={ROUTES.editTask(data.id)}>
           <EditOutlined key="edit" />
         </NavLink>,
         <DeleteOutlined key="delete" onClick={handleModaleOpen} />,
