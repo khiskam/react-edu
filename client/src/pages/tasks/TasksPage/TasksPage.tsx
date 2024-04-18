@@ -1,21 +1,28 @@
+import { PlusOutlined } from "@ant-design/icons";
 import { useTheme } from "@emotion/react";
 import { Button, Col, Flex, Input, Row, Typography } from "antd";
 import { NavLink } from "react-router-dom";
+import { useGetAllQuery } from "src/shared/api";
 import { ROUTES } from "src/shared/constants";
 import { SPACE } from "src/shared/theme";
 import { Container, PageLayout } from "src/shared/ui";
 import { SelectField, Tabs, TaskCard } from "src/shared/ui";
 
 import { DATE_SELECT_DATA, TABS_DATA, TITLE_SELECT_DATA } from "./contstants";
-import { useData, useQueryParams } from "./hooks";
-import { filterSort } from "./hooks/helpers";
+import { useQueryParams } from "./hooks";
 import { searchInputStyles } from "./styled";
 
 export const TasksPage = () => {
   const theme = useTheme();
-  const { data } = useData();
+
+  const { data } = useGetAllQuery("");
+  console.log(data);
 
   const { onChange, setParam, searchParams } = useQueryParams();
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <Container>
@@ -31,7 +38,9 @@ export const TasksPage = () => {
             allowClear
           />
           <NavLink to={ROUTES.createTask}>
-            <Button type="primary">Добавить задачу</Button>
+            <Button type="primary" icon={<PlusOutlined />}>
+              Добавить задачу
+            </Button>
           </NavLink>
         </Flex>
 
@@ -62,7 +71,7 @@ export const TasksPage = () => {
         </Flex>
 
         <Row gutter={[SPACE.gap12, SPACE.gap12]}>
-          {filterSort(searchParams, data).map((item) => (
+          {data.tasks.map((item) => (
             <Col key={item.id} sm={24} lg={12}>
               <TaskCard data={item} />
             </Col>

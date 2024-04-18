@@ -3,8 +3,8 @@ import { SelectProps, TabsProps } from "antd";
 export const NONE = "";
 
 export enum TabFilter {
-  Completed = "true",
-  Incompleted = "false",
+  Incompleted = "0",
+  Completed = "1",
 }
 
 export const SORT = {

@@ -1,6 +1,8 @@
 import express, { Application, json } from "express";
+import cors from "cors";
 import { Handler } from "./handlers/handler";
 import { errorMiddleware } from "./middleware/error";
+import { ENV } from "../env";
 
 export class App {
   private _express: Application;
@@ -11,6 +13,7 @@ export class App {
     this._port = port;
 
     this._express.use(json());
+    this._express.use(cors({ origin: ENV.CLIENT_ORIGIN }));
 
     this.initHandlers(handlers);
     this._express.use(errorMiddleware);

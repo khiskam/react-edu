@@ -9,7 +9,10 @@ export class UserService {
 
   async register(user: CreateUserDTO) {
     user.password = await Password.hash(user.password);
-    return this._repo.create(user);
+
+    const { id, email } = await this._repo.create(user);
+
+    return { id, email };
   }
 
   async login(email: string, password: string) {
@@ -27,7 +30,7 @@ export class UserService {
       throw new ClientError<UserKeys>("Неверный пароль", 400, "password");
     }
 
-    return user;
+    return { id: user.id, email };
   }
 
   async existsByPayload(id: string, email: string) {

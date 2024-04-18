@@ -1,12 +1,14 @@
 import { useTheme } from "@emotion/react";
 import { Layout, Menu } from "antd";
 import { useLocation } from "react-router-dom";
+import { useUserStore } from "src/shared/store";
 import { Container, Logo } from "src/shared/ui";
 
-import { links } from "./constants";
+import { authLinks, unauthLinks } from "./constants";
 import { HeaderMenu, headerStyles, menuStyles } from "./styled";
 
 export const Header = () => {
+  const auth = useUserStore(({ auth }) => (auth ? true : false));
   const location = useLocation();
   const theme = useTheme();
 
@@ -19,7 +21,7 @@ export const Header = () => {
           <Menu
             mode="horizontal"
             selectedKeys={[location.pathname]}
-            items={links}
+            items={auth ? authLinks : unauthLinks}
             className={menuStyles}
           />
         </HeaderMenu>

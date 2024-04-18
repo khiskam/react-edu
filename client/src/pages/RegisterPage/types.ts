@@ -13,3 +13,4 @@ export const schema = object({
 });
 
 export type FormType = InferType<typeof schema>;
+export type FormTypeKeys = keyof FormType;

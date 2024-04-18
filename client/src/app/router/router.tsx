@@ -8,7 +8,7 @@ import {
   TasksPage,
 } from "src/pages";
 import { ROUTES } from "src/shared/constants";
-import { Layout } from "src/shared/ui";
+import { AuthorizedRoute, Layout, UnauthorizedRoute } from "src/shared/ui";
 
 export const router = createBrowserRouter([
   {
@@ -20,24 +20,34 @@ export const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: ROUTES.signin,
-        element: <LoginPage />,
+        element: <AuthorizedRoute />,
+        children: [
+          {
+            path: ROUTES.signin,
+            element: <LoginPage />,
+          },
+          {
+            path: ROUTES.signup,
+            element: <RegisterPage />,
+          },
+        ],
       },
       {
-        path: ROUTES.signup,
-        element: <RegisterPage />,
-      },
-      {
-        path: ROUTES.tasks,
-        element: <TasksPage />,
-      },
-      {
-        path: ROUTES.createTask,
-        element: <CreatePage />,
-      },
-      {
-        path: ROUTES.editTask(":taskId"),
-        element: <EditPage />,
+        element: <UnauthorizedRoute />,
+        children: [
+          {
+            path: ROUTES.tasks,
+            element: <TasksPage />,
+          },
+          {
+            path: ROUTES.createTask,
+            element: <CreatePage />,
+          },
+          {
+            path: ROUTES.editTask(":taskId"),
+            element: <EditPage />,
+          },
+        ],
       },
     ],
   },

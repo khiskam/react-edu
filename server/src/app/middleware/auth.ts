@@ -19,7 +19,11 @@ export const authMiddleware = (): RequestHandler => {
     try {
       const payload = Token.verify(authHeader);
       if (typeof payload === "object") {
-        res.locals.user = { id: payload.sub, email: payload.email };
+        res.locals.user = {
+          id: payload.sub,
+          email: payload.email,
+        };
+        res.locals.token = authHeader;
 
         if (payload.sub && payload.email) {
           await userService.existsByPayload(payload.sub, payload.email);

@@ -7,6 +7,7 @@ import { UserService } from "@services/user/service";
 import { UserRepository } from "@infrastructure/repository/user.repository";
 import { prisma } from "@app/config/db";
 import { Token } from "@services/utils/token";
+import { authMiddleware } from "@app/middleware/auth";
 
 export class UserHandler implements Handler {
   private readonly _path = "/";
@@ -40,8 +41,12 @@ export class UserHandler implements Handler {
     res.status(200).json({ user, token });
   };
 
+  private handleMe: RequestHandler = async (req, res) => {
+    res.status(200).json({ user: res.locals.user, token: res.locals.token });
+  };
+
   private initRoutes = () => {
-    this._router.get(
+    this._router.post(
       "/login",
       validateMiddleware(loginSchema),
       handleError(this.handleLogin)
@@ -51,6 +56,7 @@ export class UserHandler implements Handler {
       validateMiddleware(registerSchema),
       handleError(this.handleRegister)
     );
+    this._router.use(authMiddleware()).get("/me", this.handleMe);
   };
 
   get router() {

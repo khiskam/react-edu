@@ -1,18 +1,34 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Form, Input, Typography } from "antd";
+import { AxiosError } from "axios";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useRegisterMutation } from "src/shared/api";
 import { Container, FormContainer, PageLayout } from "src/shared/ui";
 
-import { FormType, schema } from "./types";
+import { FormType, FormTypeKeys, schema } from "./types";
 
 export const RegisterPage = () => {
-  const { handleSubmit, control } = useForm<FormType>({
+  const { handleSubmit, control, setError } = useForm<FormType>({
     defaultValues: { email: "", password: "", confirmPassword: "" },
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<FormType> = (data) => console.log(data);
+  const { mutateAsync: register } = useRegisterMutation();
+
+  const onSubmit: SubmitHandler<FormType> = async (data) => {
+    try {
+      await register(data);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        const errors: Partial<FormType> = e.response?.data.errors;
+        let item: FormTypeKeys;
+        for (item in errors) {
+          setError(item, { message: errors[item] });
+        }
+      }
+    }
+  };
 
   return (
     <Container>
