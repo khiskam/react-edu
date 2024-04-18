@@ -10,7 +10,7 @@ describe("StringConverting.toInteger()", () => {
   }[] = [
     { name: "Should return coverted value", str: "3", def: 10, expected: 3 },
     {
-      name: "Should return default value cuz string sets",
+      name: "Should return default value cuz string set",
       str: "asd",
       def: 10,
       expected: 10,
