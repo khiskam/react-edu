@@ -26,5 +26,7 @@ export const updateSchema = z.object({
     })
     .min(1, "Поле Описание обязательно для заполнения")
     .max(1024, "Максимальное кол-во символов в поле Описание 1024"),
-  isCompleted: z.boolean(),
+  isCompleted: z.boolean({
+    required_error: "Поле Выполнено обязательно для заполнения",
+  }),
 });

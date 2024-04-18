@@ -1,7 +1,9 @@
 import { ClientError } from "@services/utils/client.error";
-import { CreateTaskDTO, UpdateTaskDTO } from "./dto";
+import { CreateTaskDTO, QueryParams, UpdateTaskDTO } from "./dto";
 import { ITaskRepository } from "./interfaces";
 import { TaskKeys } from "@domain/task";
+import { LIMIT, OFFSET } from "./constants";
+import { StringConverting } from "./StringConverting";
 
 export class TaskService {
   constructor(private readonly _repo: ITaskRepository) {}
@@ -16,23 +18,24 @@ export class TaskService {
     return task;
   }
 
-  // parse query params to options type like :
-  // Options = {
-  //    pagination?: {limit: number, offset: number}
-  //    sort: [{fieldName: order}]
-  //    filter: [{fieldName: value}]
-  //    search: string
-  // }
-  // limit offset
-  // filter
-  // sort, order
-  // search
-  async getAll() {
-    return this._repo.getAll();
+  async getAll(qp: QueryParams, userId: string) {
+    const limit = StringConverting.toInteger(LIMIT, qp.limit);
+    const offset = StringConverting.toInteger(OFFSET, qp.offset);
+    console.log(offset * limit);
+    const params = {
+      userId,
+      limit,
+      offset: limit * offset,
+      search: { title: qp.q },
+      filter: { isCompleted: StringConverting.toBoolean(qp.type) },
+      sort: StringConverting.toSortingArr(qp.sort),
+    };
+
+    return this._repo.getAll(params);
   }
 
-  async create(user: CreateTaskDTO) {
-    return this._repo.create(user);
+  async create(task: CreateTaskDTO) {
+    return this._repo.create(task);
   }
 
   async update(id: string, user: UpdateTaskDTO) {

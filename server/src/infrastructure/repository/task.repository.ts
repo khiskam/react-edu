@@ -1,7 +1,7 @@
 import { Task, TaskKeys } from "@domain/task";
 import { Prisma, PrismaClient } from "@prisma/client";
 
-import { CreateTaskDTO, UpdateTaskDTO } from "@services/task/dto";
+import { CreateTaskDTO, GetAllDTO, UpdateTaskDTO } from "@services/task/dto";
 import { ITaskRepository } from "@services/task/interfaces";
 import { ClientError } from "@services/utils/client.error";
 
@@ -12,8 +12,17 @@ export class TaskRepository implements ITaskRepository {
     return this._client.task.findFirst({ where: { id, userId } });
   }
 
-  async getAll(): Promise<Task[]> {
-    return this._client.task.findMany({ where: { title: { contains: "" } } });
+  async getAll(params: GetAllDTO): Promise<Task[]> {
+    return this._client.task.findMany({
+      where: {
+        title: { contains: params.search?.title },
+        userId: { equals: params.userId },
+        isCompleted: { equals: params.filter?.isCompleted },
+      },
+      orderBy: { title: params.sort?.title, createdAt: params.sort?.createdAt },
+      skip: params.offset,
+      take: params.limit,
+    });
   }
 
   async create(user: CreateTaskDTO): Promise<Task> {

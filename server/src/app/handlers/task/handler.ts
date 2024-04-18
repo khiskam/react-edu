@@ -7,6 +7,7 @@ import { authMiddleware } from "@app/middleware/auth";
 import { TaskService } from "@services/task/service";
 import { TaskRepository } from "@infrastructure/repository/task.repository";
 import { prisma } from "@app/config/db";
+import { QueryParams } from "@services/task/dto";
 
 export class TaskHandler implements Handler {
   private readonly _path = "/tasks";
@@ -40,7 +41,11 @@ export class TaskHandler implements Handler {
   };
 
   private handleGetAll: RequestHandler = async (req, res) => {
-    res.status(200).json();
+    const qp: QueryParams = req.query;
+
+    const tasks = await this._service.getAll(qp, res.locals.user.id);
+
+    res.status(200).json({ tasks });
   };
 
   private handleGetById: RequestHandler = async (req, res) => {
