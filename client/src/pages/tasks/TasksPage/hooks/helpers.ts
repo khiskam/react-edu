@@ -1,4 +1,5 @@
-import { Task } from "../../data";
+import { Task } from "src/shared/types";
+
 import { NONE, SORT, TabFilter } from "../contstants";
 
 export const changeParams = (
